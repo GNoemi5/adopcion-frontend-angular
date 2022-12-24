@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tutorial } from '../models/mascota.model';
+import { Mascota } from '../models/mascota.model';
 
-const baseUrl = 'http://localhost:9080/mascota/v1';
+const baseUrl = 'http://localhost:8080/mascota/v1';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TutorialService {
+export class MascotaService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(baseUrl);
+  getAll(): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(baseUrl+'/listar');
   }
 
-  get(id: any): Observable<Tutorial> {
-    return this.http.get<Tutorial>(`${baseUrl}/${id}`);
+  get(id: any): Observable<Mascota> {
+    return this.http.get<Mascota>(`${baseUrl+'/listar'}/${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrl+'/registrar', data);
   }
 
   update(id: any, data: any): Observable<any> {
@@ -36,7 +36,7 @@ export class TutorialService {
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(title: any): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(`${baseUrl}?title=${title}`);
+  findByTitle(title: any): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${baseUrl}?title=${title}`);
   }
 }

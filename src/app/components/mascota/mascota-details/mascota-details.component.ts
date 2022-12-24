@@ -1,27 +1,32 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { MascotaService } from 'src/app/services/mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tutorial } from 'src/app/models/tutorial.model';
+import { Mascota } from 'src/app/models/mascota.model';
 
 @Component({
-  selector: 'app-tutorial-details',
-  templateUrl: './tutorial-details.component.html',
-  styleUrls: ['./tutorial-details.component.css']
+  selector: 'app-mascota-details',
+  templateUrl: './mascota-details.component.html',
+  styleUrls: ['./mascota-details.component.css']
 })
-export class TutorialDetailsComponent implements OnInit {
+export class MascotaDetailsComponent implements OnInit {
 
   @Input() viewMode = false;
 
-  @Input() currentTutorial: Tutorial = {
-    title: '',
-    description: '',
-    published: false
+  @Input() currentMascota: Mascota = {
+    nombre: '',
+    raza: '',
+    fechaNacimiento: '',
+    tipoMascota: {},
+    salud: '',
+    estado: false,
+    foto: '',
+    descripcion: ''
   };
   
   message = '';
 
   constructor(
-    private tutorialService: TutorialService,
+    private mascotaService: MascotaService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -33,30 +38,35 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   getTutorial(id: string): void {
-    this.tutorialService.get(id)
+    this.mascotaService.get(id)
       .subscribe({
         next: (data) => {
-          this.currentTutorial = data;
+          this.currentMascota = data;
           console.log(data);
         },
         error: (e) => console.error(e)
       });
   }
 
-  updatePublished(status: boolean): void {
+  updateAdoption(status: boolean): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
-      published: status
+      nombre: this.currentMascota.nombre,
+      raza: this.currentMascota.raza,
+      fechaNacimiento: this.currentMascota.fechaNacimiento,
+      tipoMascota: this.currentMascota.tipoMascota,
+      salud: this.currentMascota.salud,
+      estado: this.currentMascota.estado,
+      foto: this.currentMascota.foto,
+      descripcion: this.currentMascota.descripcion,
     };
 
     this.message = '';
 
-    this.tutorialService.update(this.currentTutorial.id, data)
+    this.mascotaService.update(this.currentMascota.id, data)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.currentTutorial.published = status;
+          this.currentMascota.estado = status;
           this.message = res.message ? res.message : 'The status was updated successfully!';
         },
         error: (e) => console.error(e)
@@ -66,7 +76,7 @@ export class TutorialDetailsComponent implements OnInit {
   updateTutorial(): void {
     this.message = '';
 
-    this.tutorialService.update(this.currentTutorial.id, this.currentTutorial)
+    this.mascotaService.update(this.currentMascota.id, this.currentMascota)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -77,7 +87,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   deleteTutorial(): void {
-    this.tutorialService.delete(this.currentTutorial.id)
+    this.mascotaService.delete(this.currentMascota.id)
       .subscribe({
         next: (res) => {
           console.log(res);

@@ -1,0 +1,90 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="row">
+        <div class="col-6">
+          <label for="file">File:</label>
+          <input
+            [(ngModel)]="mascota.foto"
+            class="form-control"
+            type="file"
+            (change)="handleFileInput($any($event).target.files)"
+          />
+          <img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image" />
+        </div>
+        <div class="col-6">
+          <div class="col-12">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              [(ngModel)]="mascota.nombre"
+              type="text"
+              class="form-control"
+              id="nombre"
+              aria-describedby="Nombre"
+            />
+          </div>
+          <div class="col-12">
+            <label for="raza" class="form-label">Raza</label>
+            <input
+              [(ngModel)]="mascota.raza"
+              type="text"
+              class="form-control"
+              id="raza"
+              aria-describedby="Raza"
+            />
+          </div>
+          <div class="col-12">
+            <label for="fechaNacimiento" class="form-label"
+              >Fecha nacimiento</label
+            >
+            <input
+              [(ngModel)]="mascota.fechaNacimiento"
+              type="date"
+              class="form-control"
+              id="raza"
+              aria-describedby="Fecha Nacimiento"
+            />
+          </div>
+          <div class="col-12">
+            <label for="tipoMascota" class="form-label">Tipo de mascota</label>
+            <select name="miselect" [(ngModel)]="mascota.tipoMascota">
+              <option
+                [ngValue]="tipoMascota"
+                *ngFor="let tipoMascota of tipoMascotas"
+              >
+                {{ tipoMascota.descripcion }}
+              </option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="tipoMascota" class="form-label">Estado</label>
+            <select
+              [(ngModel)]="mascota.estado"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option value=false>Sin Adoptar</option>
+              <option value=true>Adoptado</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea
+              [(ngModel)]="mascota.descripcion"
+              class="form-control"
+              id="descripcion"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newTutorial()">Add</button>
+    </div>
+  </div>
+</div>

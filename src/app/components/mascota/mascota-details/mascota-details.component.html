@@ -1,34 +1,34 @@
 <div *ngIf="viewMode; else editable">
-  <div *ngIf="currentTutorial.id">
+  <div *ngIf="currentMascota.id">
     <h4>Tutorial</h4>
     <div>
-      <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+      <label><strong>Title:</strong></label> {{ currentMascota.nombre }}
     </div>
     <div>
       <label><strong>Description:</strong></label>
-      {{ currentTutorial.description }}
+      {{ currentMascota.descripcion }}
     </div>
     <div>
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.published ? "Published" : "Pending" }}
+      {{ currentMascota.estado ? "Published" : "Pending" }}
     </div>
 
     <a
       class="badge badge-warning"
-      routerLink="/tutorials/{{ currentTutorial.id }}"
+      routerLink="/mascotas/{{ currentMascota.id }}"
     >
       Edit
     </a>
   </div>
 
-  <div *ngIf="!currentTutorial">
+  <div *ngIf="!currentMascota">
     <br />
     <p>Please click on a Tutorial...</p>
   </div>
 </div>
 
 <ng-template #editable>
-  <div *ngIf="currentTutorial.id" class="edit-form">
+  <div *ngIf="currentMascota.id" class="edit-form">
     <h4>Tutorial</h4>
     <form>
       <div class="form-group">
@@ -37,7 +37,7 @@
           type="text"
           class="form-control"
           id="title"
-          [(ngModel)]="currentTutorial.title"
+          [(ngModel)]="currentMascota.nombre"
           name="title"
         />
       </div>
@@ -47,28 +47,28 @@
           type="text"
           class="form-control"
           id="description"
-          [(ngModel)]="currentTutorial.description"
+          [(ngModel)]="currentMascota.descripcion"
           name="description"
         />
       </div>
 
       <div class="form-group">
         <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
+        {{ currentMascota.estado ? "Published" : "Pending" }}
       </div>
     </form>
 
     <button
       class="badge badge-primary mr-2"
-      *ngIf="currentTutorial.published"
-      (click)="updatePublished(false)"
+      *ngIf="currentMascota.estado"
+      (click)="updateAdoption(false)"
     >
       UnPublish
     </button>
     <button
-      *ngIf="!currentTutorial.published"
+      *ngIf="!currentMascota.estado"
       class="badge badge-primary mr-2"
-      (click)="updatePublished(true)"
+      (click)="updateAdoption(true)"
     >
       Publish
     </button>
@@ -87,7 +87,7 @@
     <p>{{ message }}</p>
   </div>
 
-  <div *ngIf="!currentTutorial.id">
+  <div *ngIf="!currentMascota.id">
     <br />
     <p>Cannot access this Tutorial...</p>
   </div>

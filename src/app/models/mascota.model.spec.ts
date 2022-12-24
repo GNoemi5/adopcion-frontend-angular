@@ -1,4 +1,4 @@
-import { Tutorial } from './tutorial.model';
+import { Tutorial } from './mascota.model';
 
 describe('Tutorial', () => {
   it('should create an instance', () => {

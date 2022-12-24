@@ -1,0 +1,16 @@
+<div>
+  <div class="container overflow-hidden text-center">
+    <div class="row row-cols-md-2 row-cols-1 row-cols-lg-3 g-2 g-lg-3">
+      <div class="col mt-3" *ngFor="let mascota of mascotas">
+        <div class="card p-3">
+          <img src="{{ mascota.foto }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ mascota.nombre }}</h5>
+            <p class="card-text" >{{ mascota.descripcion }}</p>
+            <button (click)="editar(mascota)" href="#" class="btn btn-primary">Adoptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

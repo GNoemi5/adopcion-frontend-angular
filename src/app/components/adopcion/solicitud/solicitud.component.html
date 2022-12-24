@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-12 mb-5 mb-lg-0">
+    <div class="card border-light">
+      <div class="row no-gutters align-items-top">
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-12">
+              <img
+                [src]="mascota.foto"
+                class="card-img rounded-left"
+                [alt]="mascota.nombre"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-12">
+              <button class="btn btn-primary col-12" type="button">
+                Solicitar Adopción
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h6 class="card-title">Tipo de mascota:</h6>
+                <p class="card-text">
+                  {{ mascota.tipoMascota?.descripcion }}
+                </p>
+              </li>
+              <li class="list-group-item">
+                <h6 class="card-title">Nombre</h6>
+                <p class="card-text">
+                  {{ mascota.nombre }}
+                </p>
+              </li>
+              <li class="list-group-item">
+                <h6 class="card-title">Raza</h6>
+                <p class="card-text">
+                  {{ mascota.raza }}
+                </p>
+              </li>
+              <li class="list-group-item">
+                <h6 class="card-title">Fecha nacimiento aproximada:</h6>
+                <p class="card-text">
+                  {{ mascota.fechaNacimiento | date:'MM/yyyy'}}
+                </p>
+              </li>
+              <li class="list-group-item">
+                <h6 class="card-title">Salud</h6>
+                <p class="card-text">
+                  {{ mascota.salud }}
+                </p>
+              </li>
+              <li class="list-group-item">
+                <h6 class="card-title">Descripcion</h6>
+                <p class="card-text">
+                  {{ mascota.descripcion }}
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
